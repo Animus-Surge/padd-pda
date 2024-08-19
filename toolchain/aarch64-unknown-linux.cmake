@@ -3,7 +3,7 @@ set(CMAKE_SYSTEM_PROCESSOR arm)
 
 set(CMAKE_SYSROOT /media/surge/rootfs)
 
-set(CMAKE_C_COMPILER /usr/bin/aarch64-linux-gnu-gcc)
+set(CMAKE_C_COMPILER /usr/bin/aarch64-linux-gnu-gcc-12)
 set(CMAKE_CXX_COMPILER /usr/bin/aarch64-linux-gnu-g++-12)
 
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)

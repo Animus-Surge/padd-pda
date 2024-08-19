@@ -12,14 +12,14 @@ mkdir x86_64-unknown-linux
 cd x86_64-unknown-linux
 cmake ../..
 
-if [$? -gt 0]; then
+if [ $? -gt 0 ]; then
     echo Failed to run cmake for target x86_64-unknown-linux. See above for details.
     exit 1
 fi
 
 make
 
-if [$? -gt 0]; then
+if [ $? -gt 0 ]; then
     echo Failed to build target x86_64-unknown-linux. See above for details.
     exit 1
 fi
@@ -32,14 +32,14 @@ mkdir aarch64-unknown-linux
 cd aarch64-unknown-linux
 cmake ../.. -DCMAKE_TOOLCHAIN_FILE=$AARCH64_TOOLCHAIN_FILE
 
-if [$? -gt 0]; then
+if [ $? -gt 0 ]; then
     echo Failed to run cmake for target aarch64-unknown-linux. See above for details.
     exit 1
 fi
 
 make
 
-if [$? -gt 0]; then
+if [ $? -gt 0 ]; then
     echo Failed to build target aarch64-unknown-linux. See above for details.
     exit 1
 fi
