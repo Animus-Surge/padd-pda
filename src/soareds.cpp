@@ -25,13 +25,31 @@ void render_common() {
     Point header_lines[] = {
         Point{0, 80},
         Point{200, 80},
+        Point{280, 0},
         Point{250, 30},
         Point{400, 30},
-        Point{430, 0}
+        Point{430, 0},
+        Point{800, 0},
+        Point{820, 20},
+        Point{900, 20},
+        Point{880, 0},
+        Point{930, 50},
+        Point{1024, 50}
+    };
+
+    Point footer_lines[] = {
+        Point{0, 560},
+        Point{100, 560},
+        Point{140, 600},
+        Point{120, 580},
+        Point{200, 580},
+        Point{220, 600}
     };
 
     int header_count = sizeof(header_lines) / sizeof(header_lines[0]);
+    int footer_count = sizeof(footer_lines) / sizeof(footer_lines[0]);
 
     draw_lines(header_lines, header_count, 1);
+    draw_lines(footer_lines, footer_count, 1);
 
 }

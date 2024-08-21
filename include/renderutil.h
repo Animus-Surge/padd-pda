@@ -3,12 +3,20 @@
 #ifndef PDA_RENDERUTIL_H
 #define PDA_RENDERUTIL_H
 
-//TODO
+//TODO: documentation
 
 #include "pda.h"
 #include "state.h"
 
+#include <map>
+#include <string>
+
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_image.h>
+
+extern std::map<std::string, TTF_Font> font_map;
+extern std::map<std::string, SDL_Surface*> image_map;
 
 static inline void set_color(Color *color) {
     SDL_SetRenderDrawColor(renderer, color->r, color->g, color->b, color->a);
@@ -30,5 +38,14 @@ void fill_poly(Point points[], int num_points);
 //Rectangle rendering
 void draw_rect(Point *position, int width, int height);
 void fill_rect(Point *position, int width, int height);
+
+//Image handling
+void load_image(const char* src, const char* nick);
+SDL_Surface* get_image(const char* nick);
+
+//Font handling
+void load_font(const char* src, const char* nick);
+TTF_Font* get_font(const char* nick);
+void kill_all_fonts();
 
 #endif
