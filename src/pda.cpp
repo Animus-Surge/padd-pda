@@ -1,6 +1,7 @@
 #include "pda.h"
 #include "state.h"
 #include "soareds.h"
+#include "renderutil.h"
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
@@ -38,6 +39,8 @@ bool init() {
         return false;
     }
 
+    load_font("./resources/Iceberg-Regular.ttf", "iceberg");
+
     //Settings (TODO:)
     SDL_ShowCursor(PDA_CURSOR);
 
@@ -49,6 +52,14 @@ bool init() {
  */
 void run() {
     SDL_Event event;
+
+    TTF_Font* test = get_font("iceberg");
+    SDL_Surface* test_text = TTF_RenderText_Solid(test, "Hello!", SDL_Color{255, 255, 255, 255});
+    SDL_Texture* test_text_text = SDL_CreateTextureFromSurface(renderer, test_text);
+
+    SDL_Rect rect = SDL_Rect{
+        10, 10, 100, 50
+    };
 
     while (running) {
         //Event handling
@@ -65,8 +76,12 @@ void run() {
         //Rendering
         render_common();
 
+        SDL_RenderCopy(renderer, test_text_text, NULL, &rect);
+
         SDL_RenderPresent(renderer);
     }
+
+    SDL_DestroyTexture(test_text_text); //ALWAYS DESTROY TEXTURES SO YOU DON'T HAVE MEMORY LEAKS
 }
 
 /**

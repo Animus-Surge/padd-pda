@@ -15,7 +15,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 
-extern std::map<std::string, TTF_Font> font_map;
+extern std::map<std::string, TTF_Font*> font_map;
 extern std::map<std::string, SDL_Surface*> image_map;
 
 static inline void set_color(Color *color) {

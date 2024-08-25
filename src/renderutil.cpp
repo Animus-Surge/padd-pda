@@ -43,9 +43,9 @@ void fill_rect(Point *position, int width, int height) {
 
 void load_image(const char* src, const char* nick) {
 }
-SDL_Surface* get_image(const char* nick){}
+SDL_Surface* get_image(const char* nick){return NULL;}
 
-void load_font(const char* src, const char* nick, int size) {
+void load_font(const char* src, const char* nick) {
     std::string nick_str(nick);
 
     //BREAK CASE: font already exists in our cache
@@ -53,19 +53,24 @@ void load_font(const char* src, const char* nick, int size) {
         return;
     }
 
-    TTF_Font* font = TTF_OpenFont(src, size);
+    TTF_Font* font = TTF_OpenFont(src, 40); //TODO: sizing args
     if(font) {
         font_map[nick_str] = font;
     } else {
-        printf("Error occured whilst loading font: %s; %s", src, SDL_GetError());
+        printf("E: Error occured whilst loading font '%s': %s", src, SDL_GetError());
     }
 }
-TTF_Font* get_font(const char* nick) {
+
+TTF_Font *get_font(const char *nick)
+{
     std::string nick_str(nick);
 
     auto it = font_map.find(nick);
     if(it != font_map.end()) return it->second;
-    else return nullptr;
+    else {
+        printf("W: Font %s not found", nick);
+    }
+    return nullptr;
 }
 
 void kill_all_fonts() {

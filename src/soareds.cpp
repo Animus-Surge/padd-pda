@@ -49,7 +49,11 @@ void render_common() {
     int header_count = sizeof(header_lines) / sizeof(header_lines[0]);
     int footer_count = sizeof(footer_lines) / sizeof(footer_lines[0]);
 
+    //Screen borders
     draw_lines(header_lines, header_count, 1);
     draw_lines(footer_lines, footer_count, 1);
+
+    //Test labels
+    // TTF_Font* t1 = get_font("iceberg");
 
 }
