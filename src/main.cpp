@@ -18,6 +18,8 @@ int main() {
 
     // printf("Found screen with size (%d, %d)", screen_width, screen_height);
 
+    setvbuf(stdout, NULL, _IOLBF, 0);
+
     init();
     run();
     shutdown();

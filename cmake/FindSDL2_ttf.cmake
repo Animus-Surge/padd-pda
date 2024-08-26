@@ -1,8 +1,8 @@
 # Check if we are cross-compiling
 if(CMAKE_CROSSCOMPILING)
-    message(STATUS "Cross-compiling for aarch64")
+    message(STATUS "FindSDL2_ttf.cmake: Cross-compiling for aarch64")
     if(DEFINED CMAKE_SYSROOT)
-        message(STATUS "Using SYSROOT: ${CMAKE_SYSROOT}")
+        message(STATUS "FindSDL2_ttf.cmake: Using SYSROOT: ${CMAKE_SYSROOT}")
         set(SDL2_TTF_SEARCH_PATHS
             "${CMAKE_SYSROOT}/usr"
             "${CMAKE_SYSROOT}/usr/local"
@@ -16,7 +16,7 @@ if(CMAKE_CROSSCOMPILING)
         )
     endif()
 else()
-    message(STATUS "Compiling for native architecture")
+    message(STATUS "FindSDL2_ttf.cmake: Compiling for native architecture")
     set(SDL2_TTF_SEARCH_PATHS
         "/usr"
         "/usr/local"
@@ -31,7 +31,7 @@ find_library(SDL2_TTF_LIBRARY
     PATH_SUFFIXES lib
 )
 
-message(STATUS "SDL2_TTF_LIBRARY: ${SDL2_TTF_LIBRARY}")
+message(STATUS "FindSDL2_ttf.cmake: SDL2_TTF_LIBRARY: ${SDL2_TTF_LIBRARY}")
 
 # Find the SDL2 include directory
 find_path(SDL2_TTF_INCLUDE_DIR
@@ -40,11 +40,10 @@ find_path(SDL2_TTF_INCLUDE_DIR
     PATH_SUFFIXES include/SDL2
 )
 
-message(STATUS "SDL2_TTF_INCLUDE_DIR: ${SDL2_TTF_INCLUDE_DIR}")
+message(STATUS "FindSDL2_ttf.cmake: SDL2_TTF_INCLUDE_DIR: ${SDL2_TTF_INCLUDE_DIR}")
 
 # Check if the library and include directory were found
 if(SDL2_LIBRARY AND SDL2_TTF_INCLUDE_DIR)
-    message(STATUS "Found SDL2_TTF lib and include directory")
     set(SDL2_TTF_FOUND TRUE)
     set(SDL2_TTF_LIBRARIES ${SDL2_TTF_LIBRARY})
     set(SDL2_TTF_INCLUDE_DIRS ${SDL2_TTF_INCLUDE_DIR})
@@ -55,7 +54,6 @@ if(SDL2_LIBRARY AND SDL2_TTF_INCLUDE_DIR)
         INTERFACE_INCLUDE_DIRECTORIES ${SDL2_TTF_INCLUDE_DIR}
     )
 else()
-    message(STATUS "Could not find SDL2_TTF lib and include directory")
     set(SDL2_TTF_FOUND FALSE)
 endif()
 

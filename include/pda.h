@@ -12,19 +12,17 @@
 
 #include <stdint.h>
 
-typedef struct {
-    uint8_t r;
-    uint8_t g;
-    uint8_t b;
-    uint8_t a = 255;
-} Color;
+#include "SDL2/SDL.h"
 
 typedef struct {
     int32_t x;
     int32_t y;
 } Point;
 
-extern Color bg_color;
+extern SDL_Color bg_color;
+
+const SDL_Color PDA_BLACK = {0, 0, 0, 255};
+const SDL_Color PDA_WHITE = {255, 255, 255, 255};
 
 bool init();
 void run();

@@ -18,7 +18,7 @@
 extern std::map<std::string, TTF_Font*> font_map;
 extern std::map<std::string, SDL_Surface*> image_map;
 
-static inline void set_color(Color *color) {
+static inline void set_color(SDL_Color *color) {
     SDL_SetRenderDrawColor(renderer, color->r, color->g, color->b, color->a);
 }
 
@@ -44,8 +44,10 @@ void load_image(const char* src, const char* nick);
 SDL_Surface* get_image(const char* nick);
 
 //Font handling
-void load_font(const char* src, const char* nick);
 TTF_Font* get_font(const char* nick);
 void kill_all_fonts();
+void kill_font(const char* nick);
+
+void render_text(int, int, char*, const char*, SDL_Color);
 
 #endif

@@ -7,7 +7,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
-Color bg_color = Color{0, 0, 10};
+SDL_Color bg_color = {0, 0, 10};
 
 /**
  * Initialization function, returns false if any system failed to init
@@ -39,9 +39,9 @@ bool init() {
         return false;
     }
 
-    load_font("./resources/Iceberg-Regular.ttf", "iceberg");
+    //Load fonts (I would love to be able to change this...)
 
-    //Settings (TODO:)
+    //Settings (TODO: load from json or config file)
     SDL_ShowCursor(PDA_CURSOR);
 
     return true;
@@ -53,19 +53,15 @@ bool init() {
 void run() {
     SDL_Event event;
 
-    TTF_Font* test = get_font("iceberg");
-    SDL_Surface* test_text = TTF_RenderText_Solid(test, "Hello!", SDL_Color{255, 255, 255, 255});
-    SDL_Texture* test_text_text = SDL_CreateTextureFromSurface(renderer, test_text);
-
-    SDL_Rect rect = SDL_Rect{
-        10, 10, 100, 50
-    };
-
     while (running) {
         //Event handling
         while (SDL_PollEvent(&event)) {
             if(event.key.keysym.scancode == SDL_SCANCODE_ESCAPE || event.type == SDL_QUIT) {
                 running = false;
+            }
+
+            if(event.type == SDL_MOUSEBUTTONUP) {
+                printf("D: Mouse click at: (%d, %d)\n", event.button.x, event.button.y);
             }
         }
 
@@ -76,12 +72,8 @@ void run() {
         //Rendering
         render_common();
 
-        SDL_RenderCopy(renderer, test_text_text, NULL, &rect);
-
         SDL_RenderPresent(renderer);
     }
-
-    SDL_DestroyTexture(test_text_text); //ALWAYS DESTROY TEXTURES SO YOU DON'T HAVE MEMORY LEAKS
 }
 
 /**
@@ -93,6 +85,7 @@ void shutdown() {
     SDL_DestroyWindow(window);
 
     //TODO: call destroy functions for fonts
+    kill_all_fonts();
 
     //Quit SDL resources
     TTF_Quit();

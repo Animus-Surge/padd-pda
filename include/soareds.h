@@ -8,18 +8,18 @@
 #include <SDL2/SDL.h>
 
 //OK colors
-extern Color SOAREDS_OK_1;
-extern Color SOAREDS_OK_2;
-extern Color SOAREDS_OK_3;
-extern Color SOAREDS_OK_4;
-extern Color SOAREDS_OK_5;
+extern SDL_Color SOAREDS_OK_1;
+extern SDL_Color SOAREDS_OK_2;
+extern SDL_Color SOAREDS_OK_3;
+extern SDL_Color SOAREDS_OK_4;
+extern SDL_Color SOAREDS_OK_5;
 
 //OK colors alt theme
-extern Color SOAREDS_OK_ALT_1;
-extern Color SOAREDS_OK_ALT_2;
-extern Color SOAREDS_OK_ALT_3;
-extern Color SOAREDS_OK_ALT_4;
-extern Color SOAREDS_OK_ALT_5;
+extern SDL_Color SOAREDS_OK_ALT_1;
+extern SDL_Color SOAREDS_OK_ALT_2;
+extern SDL_Color SOAREDS_OK_ALT_3;
+extern SDL_Color SOAREDS_OK_ALT_4;
+extern SDL_Color SOAREDS_OK_ALT_5;
 
 //Code Yellow
 //Code Red
