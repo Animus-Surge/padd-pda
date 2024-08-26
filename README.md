@@ -2,6 +2,10 @@
 
 A stylized PDA application
 
+```
+TODO: Add instructions for other operating systems and toolchains
+```
+
 ## Hardware
 
 Runs on a Raspberry Pi Zero 2 W with a touchscreen module

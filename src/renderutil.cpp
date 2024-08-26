@@ -11,7 +11,7 @@ std::map<std::string, TTF_Font*> font_map = {};
 //Images map for caching loaded images
 std::map<std::string, SDL_Surface*> image_map = {};
 
-void draw_line(Point *start, Point *end, int thickness) {
+void draw_line(SDL_Point *start, SDL_Point *end, int thickness) {
     //Determine thickness offset
     int th_offset = (thickness - 1) / 2;
 
@@ -22,20 +22,20 @@ void draw_line(Point *start, Point *end, int thickness) {
     SDL_RenderDrawLine(renderer, start->x, start->y, end->x, end->y);
 
 }
-void draw_lines(Point points[], int num_points, int thickness) {
+void draw_lines(SDL_Point points[], int num_points, int thickness) {
     if(thickness == 0) thickness = 1; //No zero thickness allowed
 
     //Render lines
     int i;
     for(i = 0; i < num_points - 1; i++) {
-        Point start = points[i];
-        Point end = points[i+1];
+        SDL_Point start = points[i];
+        SDL_Point end = points[i+1];
 
         draw_line(&start, &end, thickness);
     }
 }
 
-void draw_poly(Point points[], int num_points) {
+void draw_poly(SDL_Point points[], int num_points) {
     if (num_points < 2) return;
 
     for (int i = 0; i < num_points - 1; ++i) {
@@ -44,7 +44,7 @@ void draw_poly(Point points[], int num_points) {
     // Draw line from last point to the first point to close the polygon
     SDL_RenderDrawLine(renderer, points[num_points - 1].x, points[num_points - 1].y, points[0].x, points[0].y);
 }
-void fill_poly(Point points[], int num_points) {
+void fill_poly(SDL_Point points[], int num_points) {
     if (num_points < 3) return;
 
     // Find the bounding box of the polygon
@@ -81,11 +81,11 @@ void fill_poly(Point points[], int num_points) {
     }
 }
 
-void draw_rect(Point *position, int width, int height) {
+void draw_rect(SDL_Point *position, int width, int height) {
     SDL_Rect rect = SDL_Rect{position->x, position->y, width, height};
     SDL_RenderDrawRect(renderer, &rect);
 }
-void fill_rect(Point *position, int width, int height) {
+void fill_rect(SDL_Point *position, int width, int height) {
     SDL_Rect rect = SDL_Rect{position->x, position->y, width, height};
     SDL_RenderFillRect(renderer, &rect);
 }
@@ -150,8 +150,7 @@ void kill_all_fonts() {
     }
 }
 
-void render_text(int x, int y, char* t, const char* f, SDL_Color c) {
-    //TODO: text caching
+void render_text(int x, int y, const char* t, const char* f, SDL_Color c) {
     TTF_Font* font = get_font(f);
     if(font == nullptr) return;
 

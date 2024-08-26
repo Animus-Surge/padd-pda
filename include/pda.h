@@ -8,7 +8,7 @@
 #define PDA_HEIGHT 600
 
 //TEMPORARY: config options
-#define PDA_CURSOR 0
+#define PDA_CURSOR 1
 
 #include <stdint.h>
 
@@ -21,8 +21,8 @@ typedef struct {
 
 extern SDL_Color bg_color;
 
-const SDL_Color PDA_BLACK = {0, 0, 0, 255};
-const SDL_Color PDA_WHITE = {255, 255, 255, 255};
+extern SDL_Color PDA_BLACK;
+extern SDL_Color PDA_WHITE;
 
 bool init();
 void run();

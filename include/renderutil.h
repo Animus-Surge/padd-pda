@@ -28,16 +28,16 @@ static inline void clear() {
 }
 
 //Line rendering
-void draw_line(Point *start, Point *end, int thickness);
-void draw_lines(Point points[], int num_points, int thickness);
+void draw_line(SDL_Point *start, SDL_Point *end, int thickness);
+void draw_lines(SDL_Point points[], int num_points, int thickness);
 
 //Polygon rendering
-void draw_poly(Point points[], int num_points);
-void fill_poly(Point points[], int num_points);
+void draw_poly(SDL_Point points[], int num_points);
+void fill_poly(SDL_Point points[], int num_points);
 
 //Rectangle rendering
-void draw_rect(Point *position, int width, int height);
-void fill_rect(Point *position, int width, int height);
+void draw_rect(SDL_Point *position, int width, int height);
+void fill_rect(SDL_Point *position, int width, int height);
 
 //Image handling
 void load_image(const char* src, const char* nick);
@@ -48,6 +48,6 @@ TTF_Font* get_font(const char* nick);
 void kill_all_fonts();
 void kill_font(const char* nick);
 
-void render_text(int, int, char*, const char*, SDL_Color);
+void render_text(int, int, const char*, const char*, SDL_Color);
 
 #endif

@@ -19,6 +19,8 @@ extern bool running;
 //Globals
 extern SDL_Renderer* renderer;
 extern SDL_Window* window;
+extern bool last_click_handled;
+extern SDL_Point last_click_pos;
 
 //Scenes
 void suspend_scene();
