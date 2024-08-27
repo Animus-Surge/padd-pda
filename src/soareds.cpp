@@ -8,12 +8,19 @@
 
 #include <unistd.h>
 
+//TODO: componentize buttons and modals
+
 // OK colors
 SDL_Color SOAREDS_OK_1 = {75, 59, 64, 255};
+SDL_Color SOAREDS_OK_1_DIM = {75, 59, 64, 128};
 SDL_Color SOAREDS_OK_2 = {130, 115, 92, 255};
+SDL_Color SOAREDS_OK_2_DIM = {130, 115, 92, 128};
 SDL_Color SOAREDS_OK_3 = {157, 177, 124, 255};
+SDL_Color SOAREDS_OK_3_DIM = {157, 177, 124, 128};
 SDL_Color SOAREDS_OK_4 = {156, 222, 159, 255};
+SDL_Color SOAREDS_OK_4_DIM = {156, 222, 159, 128};
 SDL_Color SOAREDS_OK_5 = {209, 245, 190, 255};
+SDL_Color SOAREDS_OK_5_DIM = {209, 245, 190, 128};
 
 // OK colors alt theme
 SDL_Color SOAREDS_OK_ALT_1 = {83, 55, 71, 255};
@@ -28,8 +35,11 @@ bool sys_menu_modal_visible = false;
 bool act_menu_modal_visible = false;
 
 bool b1_toggle = false;
+bool b1_blink = false;
 bool b2_toggle = false;
+bool b2_blink = false;
 bool b3_toggle = false;
+bool b3_blink = false;
 
 //Modals
 void render_cfg_modal() {}
@@ -61,6 +71,7 @@ void render_common() {
         {125, 75}
     };
 
+    //Header and footer
     SDL_Point header_lines[] = {
         {0, 80},
         {200, 80},
@@ -85,30 +96,55 @@ void render_common() {
         {220, 600}
     };
 
+    //1024 / 2 = 512
+    //600 / 2  = 300
+
+    //Modals
+    SDL_Point conf_modal[] = {
+        {200, 162},
+        {212, 150},
+        {512, 150},
+        {532, 130},
+        {812, 130},
+        {812, 310},
+        {800, 322},
+        {800, 450},
+        {200, 450}
+    };
+
+    //Point counts
+
     int header_count = sizeof(header_lines) / sizeof(header_lines[0]);
     int footer_count = sizeof(footer_lines) / sizeof(footer_lines[0]);
-    
+
     int button1_count = sizeof(button1) / sizeof(button1[0]);
     int button2_count = sizeof(button2) / sizeof(button2[0]);
     int button3_count = sizeof(button3) / sizeof(button3[0]);
 
+    int conf_modal_count = sizeof(conf_modal) / sizeof(conf_modal[0]);
 
-    //Event handling
+    //Event handling (TODO: mousedown handling, gestures?)
     if (!last_click_handled) {
 
         if(point_in_poly(&last_click_pos, button1, button1_count)) {
             b1_toggle = !b1_toggle;
+            b2_toggle = false;
+            b3_toggle = false;
         }
         else if(point_in_poly(&last_click_pos, button2, button2_count)) {
+            b1_toggle = false;
             b2_toggle = !b2_toggle;
+            b3_toggle = false;
         }
         else if(point_in_poly(&last_click_pos, button3, button3_count)) {
+            b1_toggle = false;
+            b2_toggle = false;
             b3_toggle = !b3_toggle;
         }
 
         last_click_handled = true;
     }
-    
+
     // set_color(&PDA_WHITE);
 
     // SDL_RenderDrawPoint(renderer, last_click_pos.x, last_click_pos.y);
@@ -157,7 +193,7 @@ void render_common() {
         draw_poly(button2, button2_count);
         render_text(95, 8, "CFG_S", "iceberg_16", SOAREDS_OK_4);
     }
-    
+
     set_color(&SOAREDS_OK_ALT_3);
 
     if(b3_toggle) {
@@ -168,5 +204,19 @@ void render_common() {
         draw_poly(button3, button3_count);
         render_text(160, 8, "ACT_M", "iceberg_16", PDA_WHITE);
     }
+
+
+    //Modals
+    // - Configuration
+
+    if(b2_toggle) {
+        //Border and title
+        set_color(&SOAREDS_OK_ALT_5);
+        draw_poly(conf_modal, conf_modal_count);
+        render_text(535, 133, "SYSTEM CONFIGURATION", "iceberg_20", PDA_WHITE);
+
+        //Content
+    }
+
 
 }

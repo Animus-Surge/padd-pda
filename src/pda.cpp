@@ -30,7 +30,7 @@ bool init() {
 #ifdef PDA_DEBUG
     window = SDL_CreateWindow("PDA", 20, 20, PDA_WIDTH, PDA_HEIGHT, 0);
 #else
-    window = SDL_CreateWindow("PDA", 0, 0, PDA_WIDTH, PDA_HEIGHT, SDL_WINDOW_FULLSCREEN_DESKTOP);
+    window = SDL_CreateWindow("PDA", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, PDA_WIDTH, PDA_HEIGHT, SDL_WINDOW_FULLSCREEN_DESKTOP);
 #endif
     if(!window) {
         printf("Failed to create window: %s\n", SDL_GetError());

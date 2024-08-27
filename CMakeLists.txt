@@ -20,7 +20,7 @@ file(GLOB_RECURSE SOURCES "src/*.cpp")
 add_executable(pda ${SOURCES})
 
 # Move src/resources to our target dir
-add_custom_command(TARGET pda POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:pda>)
+add_custom_command(TARGET pda POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/src/resources $<TARGET_FILE_DIR:pda>)
 
 # Debug mode check
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
