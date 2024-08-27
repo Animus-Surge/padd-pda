@@ -3,6 +3,8 @@
 #include <cmath>
 #include <algorithm>
 
+bool keyboard_state[SDL_NUM_SCANCODES] = {false};
+
 bool point_in_rect(SDL_Point* point, SDL_Rect* rect) {
     return (point->x >= rect->x && point->x <= rect->x + rect->w) && (point->y >= rect->y && point->y <= rect->y + rect->h);
 }
