@@ -64,7 +64,7 @@ void run() {
             }
 
             if(event.type == SDL_MOUSEBUTTONUP) {
-                printf("D: Mouse click at: (%d, %d)\n", event.button.x, event.button.y);
+                // printf("D: Mouse click at: (%d, %d)\n", event.button.x, event.button.y);
                 last_click_pos = {event.button.x, event.button.y};
                 last_click_handled = false;
             }

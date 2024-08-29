@@ -16,7 +16,7 @@ int main() {
     int screen_width = XWidthOfScreen(scr);
     int screen_height = XHeightOfScreen(scr);
 
-    printf("Found screen with size (%d, %d)\n", screen_width, screen_height);
+    printf("I: Found screen with size (%d, %d)\n", screen_width, screen_height);
 
     setvbuf(stdout, NULL, _IOLBF, 0);
 
