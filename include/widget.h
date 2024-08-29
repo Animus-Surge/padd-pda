@@ -5,7 +5,7 @@
 
 /**
  * PDA - widget.h
- * 
+ *
  * Widget class and struct definitions
  */
 
@@ -13,23 +13,34 @@
 
 #include "SDL2/SDL.h"
 
+class IClickable {
+    void onclick(SDL_Point);
+};
+
 /**
  * Base widget definitions
- * 
+ *
  * Contains the position for the widget
  */
 class Widget {
 protected:
-    SDL_Rect bounding;
+    SDL_Point pos;
 
 public:
-    Widget(SDL_Rect);
+    Widget(SDL_Point);
     ~Widget();
 
     void update();
     void render();
 };
 
+class Modal : public Widget {
+
+public:
+    Modal(SDL_Point);
+    ~Modal();
+
+};
 
 class Polygon : public Widget {
 protected:
