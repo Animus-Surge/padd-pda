@@ -30,6 +30,11 @@ extern SDL_Color SOAREDS_OK_ALT_5;
 //Code Orange
 
 // Scenes and common rendering stuff
+
+//Common rendering stuff, header bar and clock
 void render_common();
+
+//On screen keyboard
+void render_osk();
 
 #endif
