@@ -3,6 +3,7 @@
 #include "event.h"
 #include "renderutil.h"
 #include "soareds.h"
+#include "widget.h"
 
 #include <ctime>
 
@@ -101,7 +102,6 @@ void render_common() {
 
     //Modals
     SDL_Point conf_modal[] = {
-        {200, 162},
         {212, 150},
         {512, 150},
         {532, 130},
@@ -109,7 +109,8 @@ void render_common() {
         {812, 310},
         {800, 322},
         {800, 450},
-        {200, 450}
+        {200, 450},
+        {200, 162},
     };
 
     //Point counts
@@ -218,5 +219,6 @@ void render_common() {
         //Content
     }
 
+    // render_modal("Hewwo", {50, 50}, 200, 100, PDA_WHITE, PDA_WHITE, NULL, MODAL_BASIC);
 
 }

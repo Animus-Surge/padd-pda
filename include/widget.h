@@ -29,7 +29,7 @@ typedef enum PDA_BUTTON_TYPE {
     BUTTON_APPL
 };
 
-void render_modal(const char*, SDL_Point, int, int, std::function<void()>, PDA_MODAL_TYPE);
+void render_modal(const char*, SDL_Point, int, int, SDL_Color, SDL_Color, std::function<void()>, PDA_MODAL_TYPE);
 void render_button(const char*, SDL_Point, int, int, std::function<void()>, PDA_BUTTON_TYPE);
 void render_dropdown(DropdownOption[], SDL_Point, int, int, int, std::function<void()>);
 
