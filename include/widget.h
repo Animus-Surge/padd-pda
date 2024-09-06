@@ -16,21 +16,24 @@ typedef struct {
     int id;
 } DropdownOption;
 
-typedef enum PDA_MODAL_TYPE {
-    MODAL_BASIC,
-    MODAL_MENU,
-    MODAL_SIDEBAR,
-    MODAL_NOTIFICATION
-};
+//////////
+//Modals//
+//////////
 
-typedef enum PDA_BUTTON_TYPE {
-    BUTTON_BASIC,
-    BUTTON_MENU,
-    BUTTON_APPL
-};
+//Basic modal
+void render_modal(const char*, SDL_Point, int, int, SDL_Color, SDL_Color, std::function<void()>);
 
-void render_modal(const char*, SDL_Point, int, int, SDL_Color, SDL_Color, std::function<void()>, PDA_MODAL_TYPE);
-void render_button(const char*, SDL_Point, int, int, std::function<void()>, PDA_BUTTON_TYPE);
-void render_dropdown(DropdownOption[], SDL_Point, int, int, int, std::function<void()>);
+//Dropdown button modal
+void render_option_modal(DropdownOption[], SDL_Point, int, int, SDL_Color);
+
+//App menu/selection menu modal
+void render_menu_modal();
+
+///////////
+//Buttons//
+///////////
+
+//Basic button
+void render_button(const char*, SDL_Point, int, int, SDL_Color, SDL_Color, bool, std::function<void()>);
 
 #endif

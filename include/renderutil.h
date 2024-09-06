@@ -28,7 +28,7 @@ static inline void clear() {
 }
 
 //Line rendering
-void draw_line(SDL_Point *start, SDL_Point *end, int thickness);
+void draw_line(SDL_Point start, SDL_Point end, int thickness);
 void draw_lines(SDL_Point points[], int num_points, int thickness);
 
 //Polygon rendering
@@ -36,8 +36,8 @@ void draw_poly(SDL_Point points[], int num_points);
 void fill_poly(SDL_Point points[], int num_points);
 
 //Rectangle rendering
-void draw_rect(SDL_Point *position, int width, int height);
-void fill_rect(SDL_Point *position, int width, int height);
+void draw_rect(SDL_Point position, int width, int height);
+void fill_rect(SDL_Point position, int width, int height);
 
 //Image handling
 void load_image(const char* src, const char* nick);

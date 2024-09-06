@@ -35,6 +35,9 @@ bool cfg_modal_visible = false;
 bool sys_menu_modal_visible = false;
 bool act_menu_modal_visible = false;
 
+//Dropdown flags
+bool cfg_test_dropdown = false;
+
 bool b1_toggle = false;
 bool b1_blink = false;
 bool b2_toggle = false;
@@ -46,6 +49,39 @@ bool b3_blink = false;
 void render_cfg_modal() {}
 void render_sys_menu_modal() {}
 void render_act_menu_modal() {}
+
+void conf_render_inside() {
+    set_color(&PDA_WHITE);
+
+    SDL_Point dropdown_points[] = {
+        {400, 175},
+        {700, 175},
+        {700, 200},
+        {400, 200}
+    };
+    int num_dropdown_points = sizeof(dropdown_points) / sizeof(dropdown_points[0]);
+
+    render_text(215, 173, "WINDOW MODE", "iceberg_16", PDA_WHITE);
+
+    //Dropdown button
+    draw_rect({400, 175}, 300, 25);
+    render_text(403, 177, "FULLSCREEN", "iceberg_16", PDA_WHITE);
+
+    if (cfg_test_dropdown) {
+        set_color(&bg_color);
+        fill_rect({400, 201}, 300, 100);
+        set_color(&PDA_WHITE);
+        draw_rect({400, 201}, 300, 100);
+    }
+
+    if(!last_click_handled) {
+        if (point_in_poly(&last_click_pos, dropdown_points, num_dropdown_points)) {
+            cfg_test_dropdown = !cfg_test_dropdown;
+            last_click_handled = true;
+        }
+    }
+
+}
 
 //Common Rendering
 void render_common() {
@@ -97,22 +133,6 @@ void render_common() {
         {220, 600}
     };
 
-    //1024 / 2 = 512
-    //600 / 2  = 300
-
-    //Modals
-    SDL_Point conf_modal[] = {
-        {212, 150},
-        {512, 150},
-        {532, 130},
-        {812, 130},
-        {812, 310},
-        {800, 322},
-        {800, 450},
-        {200, 450},
-        {200, 162},
-    };
-
     //Point counts
 
     int header_count = sizeof(header_lines) / sizeof(header_lines[0]);
@@ -122,8 +142,6 @@ void render_common() {
     int button2_count = sizeof(button2) / sizeof(button2[0]);
     int button3_count = sizeof(button3) / sizeof(button3[0]);
 
-    int conf_modal_count = sizeof(conf_modal) / sizeof(conf_modal[0]);
-
     //Event handling (TODO: mousedown handling, gestures?)
     if (!last_click_handled) {
 
@@ -131,19 +149,23 @@ void render_common() {
             b1_toggle = !b1_toggle;
             b2_toggle = false;
             b3_toggle = false;
+            cfg_test_dropdown = false;
+            last_click_handled = true;
         }
         else if(point_in_poly(&last_click_pos, button2, button2_count)) {
             b1_toggle = false;
             b2_toggle = !b2_toggle;
             b3_toggle = false;
+            cfg_test_dropdown = false;
+            last_click_handled = true;
         }
         else if(point_in_poly(&last_click_pos, button3, button3_count)) {
             b1_toggle = false;
             b2_toggle = false;
             b3_toggle = !b3_toggle;
+            cfg_test_dropdown = false;
+            last_click_handled = true;
         }
-
-        last_click_handled = true;
     }
 
     // set_color(&PDA_WHITE);
@@ -212,9 +234,7 @@ void render_common() {
 
     if(b2_toggle) {
         //Border and title
-        set_color(&SOAREDS_OK_ALT_5);
-        draw_poly(conf_modal, conf_modal_count);
-        render_text(535, 133, "SYSTEM CONFIGURATION", "iceberg_20", PDA_WHITE);
+        render_modal("SYSTEM CONFIGURATION", {200, 150}, 600, 300, SOAREDS_OK_5, PDA_WHITE, conf_render_inside);
 
         //Content
     }

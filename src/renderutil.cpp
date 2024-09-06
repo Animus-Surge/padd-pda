@@ -11,15 +11,15 @@ std::map<std::string, TTF_Font*> font_map = {};
 //Images map for caching loaded images
 std::map<std::string, SDL_Surface*> image_map = {};
 
-void draw_line(SDL_Point *start, SDL_Point *end, int thickness) {
+void draw_line(SDL_Point start, SDL_Point end, int thickness) {
     //Determine thickness offset
     int th_offset = (thickness - 1) / 2;
 
     //Determine if more vertical or more horizontal
-    bool vertical = abs(end->x - start->x) < abs(end->y - start->y);
+    bool vertical = abs(end.x - start.x) < abs(end.y - start.y);
 
     //Render lines (TODO: thickness)
-    SDL_RenderDrawLine(renderer, start->x, start->y, end->x, end->y);
+    SDL_RenderDrawLine(renderer, start.x, start.y, end.x, end.y);
 
 }
 void draw_lines(SDL_Point points[], int num_points, int thickness) {
@@ -31,7 +31,7 @@ void draw_lines(SDL_Point points[], int num_points, int thickness) {
         SDL_Point start = points[i];
         SDL_Point end = points[i+1];
 
-        draw_line(&start, &end, thickness);
+        draw_line(start, end, thickness);
     }
 }
 
@@ -81,12 +81,12 @@ void fill_poly(SDL_Point points[], int num_points) {
     }
 }
 
-void draw_rect(SDL_Point *position, int width, int height) {
-    SDL_Rect rect = SDL_Rect{position->x, position->y, width, height};
+void draw_rect(SDL_Point position, int width, int height) {
+    SDL_Rect rect = SDL_Rect{position.x, position.y, width, height};
     SDL_RenderDrawRect(renderer, &rect);
 }
-void fill_rect(SDL_Point *position, int width, int height) {
-    SDL_Rect rect = SDL_Rect{position->x, position->y, width, height};
+void fill_rect(SDL_Point position, int width, int height) {
+    SDL_Rect rect = SDL_Rect{position.x, position.y, width, height};
     SDL_RenderFillRect(renderer, &rect);
 }
 
