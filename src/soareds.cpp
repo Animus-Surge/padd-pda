@@ -83,6 +83,37 @@ void conf_render_inside() {
 
 }
 
+void app_menu_render_inside() {
+    set_color(&SOAREDS_OK_3);
+
+    SDL_Point border[] = {
+        {100, 80},
+        {100, 300},
+        {80, 320},
+        {0, 320}
+    };
+    int num_border = sizeof(border) / sizeof(border[0]);
+
+    draw_lines(border, num_border, 1);
+
+    draw_rect({5, 85}, 90, 90);
+    draw_rect({5, 180}, 90, 90);
+
+    draw_rect({5, 275}, 40, 40);
+}
+
+void sys_menu_render() {
+    SDL_Point border[] = {
+        {100, 80},
+        {100, 300},
+        {80, 320},
+        {0, 320}
+    };
+    int num_border = sizeof(border) / sizeof(border[0]);
+
+    draw_lines(border, num_border, 1);
+}
+
 //Common Rendering
 void render_common() {
 
@@ -232,13 +263,12 @@ void render_common() {
     //Modals
     // - Configuration
 
-    if(b2_toggle) {
-        //Border and title
-        render_modal("SYSTEM CONFIGURATION", {200, 150}, 600, 300, SOAREDS_OK_5, PDA_WHITE, conf_render_inside);
-
-        //Content
+    if(b1_toggle) {
+        app_menu_render_inside();
     }
 
-    // render_modal("Hewwo", {50, 50}, 200, 100, PDA_WHITE, PDA_WHITE, NULL, MODAL_BASIC);
+    if(b2_toggle) {
+        render_modal("SYSTEM CONFIGURATION", {200, 150}, 600, 300, SOAREDS_OK_5, PDA_WHITE, conf_render_inside);
+    }
 
 }

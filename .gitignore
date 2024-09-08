@@ -1,5 +1,7 @@
 /build*
 /.vscode
 /.zed
+/.cache
 
 *.log
+*.env
